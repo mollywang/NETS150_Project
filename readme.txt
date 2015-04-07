@@ -1,3 +1,3 @@
 Project description:
 
-This is where we write what our project will be about
+This is where we write what our project will be about...
