@@ -1,32 +1,51 @@
+Project team members: Molly Wang, Juilan Gutierrez , Aryaman Vir
+
+Project category:
+- Implementation
+- Empirical analysis
+
 Project description:
+- Cross reference socioeconomic and diversity statistics of students at major universities/colleges with 
+level of awareness of and involvement in certain social issues.
+- Find correlations between certain demographic statistics with interest in certain events
 
-<<<<<<< HEAD
-This is where we write what our project will be about...
+Methodology: 
+- Measure awareness and involvement through mentions of said social issue on Twitter using 
+word match and hashtags.
+- Find socioeconomic and diversity statistics online
+- Deduce trends by tracking data
 
+For example: Will university students in certain geographical regions (South, Northeast, Midwest, West Coast) 
+tweet about the Superbowl more? Will private or public university students tweet about the UVA fraternity rape case
+more? Will universities with a higher diversity be more inclined to tweet about foreign
+events? Will universities with a higher average socioeconomic status be more or less inclined to tweet about minimum
+wage debates?
 
-geographic region - south/ northeast/ mid - west/ west 
-public/ private 
-diversity factor - check if school is american 
-income?
+Our project will implement social networks by means of Twitter as well as Document Search through parsing Tweet data.
 
-superbowl
-fraternity rape case (rolling stones article)
+Project breakdown:
 
-contact swap - tonight
-=======
+Essentially we will each share the same amount of responsibility by making each person responsible for examining
+Twitter data surrounding 1-2 events each (for a total of 3-6 events) and cross reference it with the student body 
+statistics that we gathered as a group.
 
-This is where we write what our project will be about...
+Molly:
+- Collect demographic statistics from 4 large public state universities in each geographic 
+region (South, West, Northeast, Midwest)
+- Identify 1-2 popular social events
+- Parse Twitter data from date/time surrounding that event to find level of awareness
+- Conduct analysis as a group
 
+Aryaman:
+- Collect demographic statistics from 4 large private universities in each geographic 
+region (South, West, Northeast, Midwest)
+- Identify 1-2 popular social events
+- Parse Twitter data from date/time surrounding that event to find level of awareness
+- Conduct analysis as a group
 
-Names of the members of the team (each team just needs to submit once)
-Molly Wang, Juilan , Aryamam 
-
-Project category, idea along with a short description
-
-
-Describe which of the above will be used in your project and how
-
-
-A short work breakdown – who will do what?
->>>>>>> origin/master
-
+Julian:
+- Collect demographic statistics from 4 largest liberal arts colleges in each geographic 
+region (South, West, Northeast, Midwest)
+- Identify 1-2 popular social events
+- Parse Twitter data from date/time surrounding that event to find level of awareness
+- Conduct analysis as a group
