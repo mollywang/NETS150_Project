@@ -29,23 +29,21 @@ Essentially we will each share the same amount of responsibility by making each 
 Twitter data surrounding 1-2 events each (for a total of 3-6 events) and cross reference it with the student body 
 statistics that we gathered as a group.
 
-Molly:
+Group:
 - Collect demographic statistics from 4 large public state universities in each geographic 
 region (South, West, Northeast, Midwest)
-- Identify 1-2 popular social events
+
+Molly:
+- Identify 1 popular social events
 - Parse Twitter data from date/time surrounding that event to find level of awareness
 - Conduct analysis as a group
 
 Aryaman:
-- Collect demographic statistics from 4 large private universities in each geographic 
-region (South, West, Northeast, Midwest)
-- Identify 1-2 popular social events
+- Identify 1 popular social events
 - Parse Twitter data from date/time surrounding that event to find level of awareness
 - Conduct analysis as a group
 
 Julian:
-- Collect demographic statistics from 4 largest liberal arts colleges in each geographic 
-region (South, West, Northeast, Midwest)
-- Identify 1-2 popular social events
+- Identify 1 popular social events
 - Parse Twitter data from date/time surrounding that event to find level of awareness
 - Conduct analysis as a group
