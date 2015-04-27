@@ -53,12 +53,12 @@ public class TweetLoader {
 			return;
 		}
 		try{			
-			latitude = Double.valueOf(coordinates[0]);
-			longitude = Double.valueOf(coordinates[1]);
+			longitude = Double.valueOf(coordinates[0]);  //@MollyWang edited to have coords[0] = longitude instead of latitude
+			latitude = Double.valueOf(coordinates[1]);
 		}catch(NumberFormatException e){
 			e.printStackTrace();
 		}
-		tweets.add(new Tweet(latitude,longitude,text[1]));
+		tweets.add(new Tweet(longitude, latitude, text[1]));
 	}
 	//42.531041999999999 -82.90854831 I'm at Holiday Inn Express Suites & Hotel Roseville MI (31900 Little Mack Ave., at Masonic Blvd., Roseville) http://t.co/EbQPqgB
 	
