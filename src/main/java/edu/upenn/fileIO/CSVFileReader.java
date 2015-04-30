@@ -1,10 +1,7 @@
 package edu.upenn.fileIO;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
@@ -17,10 +14,21 @@ import edu.upenn.model.State;
  * This reads in the states.csv file to parse and store data about the coordinates for each state
  */
 public class CSVFileReader {
+	private static final String file = "res/geo/states.csv";
+	private static volatile CSVFileReader INSTANCE = null;
+	private Set<State> states; 
 
-	public static Set<State> states; 
-	public static Set<State> CSVFR(String file) {
-
+	public static CSVFileReader getInstance() {
+		if (INSTANCE == null) {
+			synchronized (CSVFileReader.class) {
+				if (INSTANCE == null) {
+					INSTANCE = new CSVFileReader();
+				}
+			}
+		}
+		return INSTANCE;
+	}
+	private  CSVFileReader() {
 		states = new HashSet<State>();
 
 		Scanner scanner = null;
@@ -38,16 +46,10 @@ public class CSVFileReader {
 			states.add(temp);
 		}
 		scanner.close();
+	}
+	
+	public Set<State> getStates() {
 		return states;
-
-		/*
-		 * PRINT TEST
-		 * 
-		for (State s : states) {
-			System.out.println(s.getName() + " " + s.getLongitude() + " " + s.getLatitude());
-		}
-		 */
-
 	}
 
 }
