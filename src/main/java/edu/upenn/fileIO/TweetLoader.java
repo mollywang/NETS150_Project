@@ -8,7 +8,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import edu.upenn.model.Tweet;
-import edu.upenn.service.StateManager;
 
 /**
  * Gets a file from file system and loads all the information of tweets in the sample format
