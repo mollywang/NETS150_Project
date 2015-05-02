@@ -56,12 +56,11 @@ public class Document implements Comparable<Document> {
 	private void readFileAndPreProcess() {
 		try {
 			Scanner in = new Scanner(new File(filename));
-			System.out.println("Reading file: " + filename
-					+ " and preprocessing");
+//			System.out.println("Reading file: " + filename
+//					+ " and preprocessing");
 
 			while (in.hasNext()) {
 				String nextWord = in.next();
-
 				preProcess(nextWord);
 			}
 			in.close();

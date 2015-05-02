@@ -34,9 +34,12 @@ public class TTweets {
 			}
 			
 		}
-		
+		System.out.println("Printing: state  | #ofPositive");
 		printSet(stateManager,positiveTweetSet);
+		System.out.println();
+		System.out.println("Printing: state  | #ofNegative");
 		printSet(stateManager,negativeTweetSet);
+		System.out.println();
 	}
 	private static void addToSet(StateManager stateManager,Map<State,Integer> tweetSet, Tweet tweet){
 		State s = stateManager.findStateForTweet(tweet);

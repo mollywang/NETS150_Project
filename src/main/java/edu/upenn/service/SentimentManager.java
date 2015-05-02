@@ -8,35 +8,38 @@ import edu.upenn.vectors.Document;
 import edu.upenn.vectors.VectorSpaceModel;
 
 public class SentimentManager {
-	public static String positivePath = "res/positive.txt";
-	public static String negativePath = "res/negative.txt";
-	public boolean isPositive(Tweet tweet) {
+	private static final String positivePath = "res/positive.txt";
+	private static final String negativePath = "res/negative.txt";
+	private ArrayList<Document> positiveQuery = new ArrayList<Document>(2);
+	private ArrayList<Document> negativeQuery = new ArrayList<Document>(2);
+	private Document positive = new Document(positivePath);
+	private Document negative = new Document(negativePath);
 
-		Document positive = new Document(positivePath);
-		Document negative = new Document(negativePath);
-		Document tweetDoc = new Document(tweet);
-		
-		ArrayList<Document> positiveQuery = new ArrayList<Document>();
+	public SentimentManager() {
 		positiveQuery.add(positive);
-		positiveQuery.add(tweetDoc);
-		ArrayList<Document> negativeQuery = new ArrayList<Document>();
 		negativeQuery.add(negative);
-		negativeQuery.add(tweetDoc);
-		
-		VectorSpaceModel positiveVectorSpace = new VectorSpaceModel(new Corpus(positiveQuery));
-		VectorSpaceModel negativeVectorSpace = new VectorSpaceModel(new Corpus(positiveQuery));
-		
-
-		for(int i = 1; i < positiveQuery.size(); i++) {
-			Document doc = positiveQuery.get(i);
-			System.out.println("\nComparing to " + doc);
-			System.out.println(positiveVectorSpace.cosineSimilarity(positive, doc));
-		}
-		
-		
-		
-		return false;
 	}
-	
+
+	public boolean isPositive(Tweet tweet) {
+		Document tweetDoc = new Document(tweet);
+		positiveQuery.add(tweetDoc);
+		negativeQuery.add(tweetDoc);
+		VectorSpaceModel positiveVectorSpace = new VectorSpaceModel(new Corpus(
+				positiveQuery));
+		VectorSpaceModel negativeVectorSpace = new VectorSpaceModel(new Corpus(
+				negativeQuery));
+
+		double positiveVal = positiveVectorSpace.cosineSimilarity(positive,
+				tweetDoc);
+		System.out.println("positive val: " + positiveVal);
+		double negativeVal = negativeVectorSpace.cosineSimilarity(negative,
+				tweetDoc);
+		System.out.println("negative val: " + negativeVal);
+		System.out.println();
+		positiveQuery.remove(1);
+		negativeQuery.remove(1);
+
+		return positiveVal > negativeVal;
+	}
 
 }
