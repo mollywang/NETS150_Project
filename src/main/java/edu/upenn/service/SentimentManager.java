@@ -8,8 +8,8 @@ import edu.upenn.vectors.Document;
 import edu.upenn.vectors.VectorSpaceModel;
 
 public class SentimentManager {
-	private static final String positivePath = "res/positive.txt";
-	private static final String negativePath = "res/negative.txt";
+	private static final String positivePath = "res/positive1.txt";
+	private static final String negativePath = "res/negative1.txt";
 	private ArrayList<Document> positiveQuery = new ArrayList<Document>(2);
 	private ArrayList<Document> negativeQuery = new ArrayList<Document>(2);
 	private Document positive = new Document(positivePath);
