@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Set;
 
+import edu.upenn.model.Tweet;
+
 /**
  * This class represents one document. It will keep track of the term
  * frequencies.
@@ -19,7 +21,7 @@ public class Document implements Comparable<Document> {
 	 * A hashmap for term frequencies. Maps a term to the number of times this
 	 * terms appears in this document.
 	 */
-	private HashMap<String, Integer> termFrequency;
+	private HashMap<String, Integer> termFrequency = new HashMap<String, Integer>();
 
 	/**
 	 * The name of the file to read.
@@ -35,10 +37,14 @@ public class Document implements Comparable<Document> {
 	 */
 	public Document(String filename) {
 		this.filename = filename;
-		termFrequency = new HashMap<String, Integer>();
 
 		readFileAndPreProcess();
 	}
+	public Document(Tweet t){
+		this.filename = t.getText();
+		readTweetAndPreProcess(t);
+	}
+	
 
 	/**
 	 * This method will read in the file and do some pre-processing. The
@@ -56,23 +62,33 @@ public class Document implements Comparable<Document> {
 			while (in.hasNext()) {
 				String nextWord = in.next();
 
-				String filteredWord = nextWord.replaceAll("[^A-Za-z0-9]", "")
-						.toLowerCase();
-
-				if (!(filteredWord.equalsIgnoreCase(""))) {
-					if (termFrequency.containsKey(filteredWord)) {
-						int oldCount = termFrequency.get(filteredWord);
-						termFrequency.put(filteredWord, ++oldCount);
-					} else {
-						termFrequency.put(filteredWord, 1);
-					}
-				}
+				preProcess(nextWord);
 			}
 			in.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 
+	}
+	private void readTweetAndPreProcess(Tweet t){
+		String[] tokens = t.getText().split(" ");
+		for (String token : tokens) {
+			preProcess(token);
+		}
+	}
+
+	private void preProcess(String nextWord) {
+		String filteredWord = nextWord.replaceAll("[^A-Za-z0-9]", "")
+				.toLowerCase();
+
+		if (!(filteredWord.equalsIgnoreCase(""))) {
+			if (termFrequency.containsKey(filteredWord)) {
+				int oldCount = termFrequency.get(filteredWord);
+				termFrequency.put(filteredWord, ++oldCount);
+			} else {
+				termFrequency.put(filteredWord, 1);
+			}
+		}
 	}
 
 	/**
