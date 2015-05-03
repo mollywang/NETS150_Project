@@ -1,7 +1,11 @@
 package edu.upenn.main;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -22,24 +26,47 @@ public class TTweets {
 			ireneTweets.addAll(getIreneTweets(tweetsPath+i+".txt"));
 		}
 		System.out.println(ireneTweets.size());
-		Map<State,Integer> positiveTweetSet = new HashMap<State,Integer> ();
-		Map<State,Integer> negativeTweetSet = new HashMap<State,Integer> ();
+		//dumpTweetsByState(ireneTweets);
 		StateManager stateManager = new StateManager();
+		Map<State,Integer> sortedTweets = sortByState(stateManager,ireneTweets);
+		System.out.println("Printing: state  | #ofTweets");
+		printSet(stateManager,sortedTweets);
+		System.out.println();
+		
 		SentimentManager sentimentManager = new SentimentManager();
-		for (Tweet tweet : ireneTweets) {
-			if(sentimentManager.isPositive(tweet)){
-				addToSet(stateManager, positiveTweetSet, tweet);
-			}else{
-				addToSet(stateManager, positiveTweetSet, tweet);
-			}
-			
+		sentimentManager.determineSentiment(sortedTweets.keySet());
+		
+	}
+	/**
+	 * Sorts the list of Irene Tweets into a map containing a State as key and the number of tweets for that state as value.
+	 * @param ireneTweets
+	 */
+	private static Map<State,Integer> sortByState(StateManager stateManager,List<Tweet> ireneTweets) {
+		Map<State,Integer> tweetSet = new HashMap<State,Integer> ();
+		for (Tweet tweet : ireneTweets) {			
+			addToSet(stateManager, tweetSet, tweet);		
 		}
-		System.out.println("Printing: state  | #ofPositive");
-		printSet(stateManager,positiveTweetSet);
-		System.out.println();
-		System.out.println("Printing: state  | #ofNegative");
-		printSet(stateManager,negativeTweetSet);
-		System.out.println();
+		return tweetSet;
+	}
+
+	/**
+	 * Used to dump the filtered Tweets by state in a file for further processing with Microsoft excel.
+	 * @param tweets
+	 */
+	@SuppressWarnings("unused")
+	private static void dumpTweetsByState(List<Tweet> tweets){
+		StateManager stateManager = new StateManager();
+		try {
+			PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("res/tweetsByState.txt", true)));
+			for (Tweet tweet : tweets) {
+				State s = stateManager.findStateForTweet(tweet);
+				s.getName();
+			    out.println(s.getName()+"\t"+tweet.getText());
+			}
+			out.close();
+		} catch (IOException e) {
+			System.err.println("error while creating file");
+		}
 	}
 	private static void addToSet(StateManager stateManager,Map<State,Integer> tweetSet, Tweet tweet){
 		State s = stateManager.findStateForTweet(tweet);
@@ -50,6 +77,11 @@ public class TTweets {
 			tweetSet.put(s, 1);
 		}
 	}
+	/**
+	 * Prints the number of Tweets in the map for every state in the US.
+	 * @param stateManager
+	 * @param tweetSet
+	 */
 	private static void printSet(StateManager stateManager, Map<State,Integer> tweetSet){
 		for(State s: stateManager.getStates()){
 			Integer count = tweetSet.get(s);
@@ -73,7 +105,7 @@ public class TTweets {
 		return ireneTweets;
 	}
 
-	private static List<Tweet> loadTweets(String path) {
+	private static List<Tweet> loadTweets(final String path) {
 		File file = new File(path);
 		FileReader fr;
 		TweetLoader loader = null;
