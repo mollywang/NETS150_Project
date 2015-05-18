@@ -7,6 +7,14 @@ import edu.upenn.vectors.Corpus;
 import edu.upenn.vectors.Document;
 import edu.upenn.vectors.VectorSpaceModel;
 
+/**
+ * 
+ * Take in set of tweets in a state and run cosine similarity of all aggregated 
+ * tweets in the state against positive1.txt & negative1.txt
+ * Return 1 if cosine similarity value is higher for positive document and 0 
+ * otherwise..
+ *
+ */
 public class SentimentManager {
 	private static final String positivePath = "res/positive1.txt";
 	private static final String negativePath = "res/negative1.txt";

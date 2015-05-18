@@ -6,6 +6,9 @@ import edu.upenn.fileIO.CSVFileReader;
 import edu.upenn.model.State;
 import edu.upenn.model.Tweet;
 
+/**
+ * Find out which state a tweet originated from by calcuating Euclidean distance
+ */
 public class StateManager {
 	private final Set<State> states;
 	public StateManager() {

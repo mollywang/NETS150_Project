@@ -1,5 +1,9 @@
 package edu.upenn.model;
 
+
+/**
+ * Tweet object
+ */
 public final class Tweet {
 	private final Double latitude;
 	private final Double longitude;
