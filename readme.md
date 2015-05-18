@@ -1,52 +1,71 @@
-#Project team members: 
+#NETS150 Final Project
+
+##Project team members: 
 Molly Wang, Juilan Gutierrez , Aryaman Vir
 
 ###Project category:
 - Implementation
 - Empirical analysis
 
-###Project description:
-- Validate (or not) the hypothesis: "College tuition is negatively correlated with the likelihood for students to tweet about race-related issues."
+###Project goal:
+- Examine and analyze public sentiment on Twitter following occurrence of a major event.
+
 
 ###Methodology: 
-- Measure awareness and involvement through mentions of said social issue on Twitter using word match and hashtags.
-- Deduce trends by tracking data
+1. Collect all public tweets that are geotagged within time period of 5 days following the the event and filtering for those that contain the "Irene" query term.
 
-###Test case: 
-Pick four universities accross the country in different "tuition ranges" divisions.
+Note: Twitter’s privacy setting has changed to block people from readily downloading public tweets, so we had to write custom code to scrape all tweets from within a certain time frame and then to parse all those tweets based on whether they contained our chosen keyword.
 
-- low (i.e Delta State University	[$6,187](http://www.usnews.com/education/best-colleges/the-short-list-college/articles/2014/09/30/10-public-colleges-with-the-cheapest-out-of-state-tuition-and-fees
-))
-- mid, (TBD)
-- high, (TBD)
-- very high (i.e Sarah Lawrence College [$65,480](http://www.businessinsider.com/the-10-most-expensive-colleges-in-america-2014-11))
+2. Assign a sentiment (1 - positive or 0 - negative) to each tweet, based on all of the words it contains
 
-Determine a small set of hashtags depict a late media-resounding, race-related event in the past months.
-We will consider the police shooting of [Tony Robinson Jr](http://www.nbcnews.com/news/us-news/madison-wisconsin-cop-shoots-suspect-during-confrontation-police-n319136) earlier this semester.
+3. Aggregate tweets by the state with the closest geographic center based on longitude and latitude
+
+- Find overall talkativeness:
+Return the percentage of tweets containing a given term against all tweets in a given time span.
+
+- Find most talkative state:
+Return the state containing the most tweets containing a given term.
+
+- Find public sentiment:
+Find the cosine similarity of the body of tweets when run against two documents of positive and negative words respectively, and return the one with a higher cosine value
+Return (1 - positive) or (0 - negative) depending on whether the overall public sentiment about the event was more positive or negative
 
 
+###Variables:
 
-###Project breakdown:
-Our project will implement social networks by means of Twitter as well as Document Search through parsing Tweet data.
-We will examinine Twitter data surrounding the above test case and cross reference it with different demographics student body that we will gather as a group.
+- Tweet type: Public, Geotagged
 
-####Group:
-- Collect demographic statistics from 4 large public state universities in each tuition segment.
+- Time frame: Begin tweets date: 2011-08-28 19:02:28 / End tweets date: 2011-09-03 14:06:46
+
+- Event: Hurricane Irene
+- Keywords: “Irene”, “Hurricane”, “Hurricane Irene”
+
+- Geographical bounds: 50 states of America & the District of Columbia
+
+###Hypothesis:
+We believe that states closest to the location of Hurricane Irene will be the most talkative and have a generally more negative sentiment about the event. 
+
+These states will be:
+Southeast region - Florida, South Carolina, North Carolina, Virginia.
+Mid Atlantic region - Maryland, Delaware, Pennsylvania, New Jersey, New York, New England, Connecticut, Massachusetts, Vermont, Maine.
+
+States further away from Hurricane Irene will display a more positive sentiment or have no sentiment at all.
+
+###Task Flow:
 
 ####Molly:
-- Identifying a small set of hashtags related to the even described above. (i.e #BlackLivesMatter)
-- Finding the data source dumps of tweets related as a CSV or JSON (preferrably). 
-- writeup a brief description of the event's background and how were the data dumps obtained
-- Conduct analysis as a group
+- Get states coordinates and code to separate tweets into respective states by calculating Euclidean distance from origination of tweet by longitude & latitude
+- Find set of negative & positive keywords
+- Project write-up and analysis
+
 
 ####Aryaman:
-- Identifying tuition ranges for the four defined categories (low, mid, high, very high)
-- Picking one school for each segment
-- Defining each school's geo border in Twitters compatible format.
-- Conduct analysis as a group
+- Separate negative & positive keywords
+- Project write-up and analysis
+
 
 ####Julián:
-- Find the set of keywords that describe the involvment to the cause in negative or positive way.
-- Parse Twitter data from date/time surrounding that event to find level of awareness (maybe we could use the cosine similarity against difference queries) 
+- Scrape Twitter for relevant dataset
+- Code from a JSON and get similarities from list of positive & negative keywords (use the cosine similarity against difference queries
 - Writeup on how the keywords were curated.
-- Conduct analysis as a group
+
